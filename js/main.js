@@ -182,17 +182,17 @@
         
         var chartTitle = chart.append("text")
             .attr("x", 0)
-            .attr("y", 25)
+            .attr("y", 10)
             .attr("class", "chartTitle")
             .text("Percentage of " + expressed.slice(0, -7).toUpperCase() + " by County in " + expressed.slice(-4));
         
         var xAxis = d3.axisTop()
-            .scale(xScale)
-            .orient("top");
+            .scale(xScale);
         
         var axis = chart.append("g")
             .attr("class", "axis")
-            .call("xAxis");
+            .attr("transform", "translate(5, 30)")
+            .call(xAxis);
         
         updateChart(bars, csvData.length, colorScale);
 
@@ -256,7 +256,7 @@
             .attr("width", function (d, i){
                 return xScale(parseFloat(d[expressed]));
             })
-            .attr("x", 0)
+            .attr("x", 5)
             .style("fill", function(d, i){
                 return choropleth(d, colorScale);
             });
@@ -268,7 +268,7 @@
     function highlight(props){
 
         var selected = d3.selectAll("." + props.countyfp)
-            .style("stroke", "blue")
+            .style("stroke", "black")
             .style("stroke-width", "2");
         
         setLabel(props);
@@ -299,8 +299,8 @@
     }
     
     function setLabel(props){
-        var labelAttribute = "<h1>" + props[expressed] +
-            "</h1><b>" + expressed + "</b>";
+        var labelAttribute = "<h1>" + props[expressed] + "%" +
+            "</h1><b>" + expressed.slice(0, 1).toUpperCase() + expressed.slice(1, -7) + " " + expressed.slice(-4) + "</b>";
         
         var infolabel = d3.select("body")
             .append("div")
