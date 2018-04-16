@@ -53,6 +53,8 @@
             setChart(csvData, colorScale);
             
             createDropdown(csvData);
+            
+            createSources();
         }
     }
 
@@ -332,6 +334,14 @@
         d3.select(".infolabel")
             .style("left", x + "px")
             .style("top", y + "px");
+    }
+    
+    function createSources(){
+        
+        var sources = d3.select("body")
+            .append("div")
+            .attr("id", "sources")
+            .html('<p>*Inactivity percentage refers to the percentage of people who are physically inactive during their leisure time.<br><br> This map was created by Amy Willoughby for Geography 575<br><br>Sources:<br>"Generalized county boundary from the Census 2010 TIGER/Line files" Data.WA.gov. Accessed 4/1/2018.<br>"Diabetes County Data". Centers for Disease Control and Prevention. https://www.cdc.gov/diabetes/data/county.html. Accessed 4/1/2016.</p>');
     }
     
 })();

@@ -7,6 +7,17 @@ header {
 
 body {background-color: #F8F8F8;}
 
+sources {
+    position: absolute;
+    bottom: 0;
+    padding-left: 20px;
+}
+
+p {
+    font-size: 12px;
+    padding-left: 20px;
+}
+
 .map{
     stroke: black;
     stroke-width: 0.5px;
