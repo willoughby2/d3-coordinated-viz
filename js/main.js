@@ -106,11 +106,11 @@
     
     function makeColorScale(data){
         var colorClasses = [
-            "#D4B9DA",
-            "#C994C7",
-            "#DF65B0",
-            "#DD1C77",
-            "#980043"
+            "#ffd4d3",
+            "#f7aa9e",
+            "#e87c67",
+            "#cd3b2d",
+            "#ba0909"
         ];
         
         var colorScale = d3.scaleThreshold()
@@ -186,6 +186,14 @@
             .attr("class", "chartTitle")
             .text("Percentage of " + expressed.slice(0, -7).toUpperCase() + " by County in " + expressed.slice(-4));
         
+        var xAxis = d3.axisTop()
+            .scale(xScale)
+            .orient("top");
+        
+        var axis = chart.append("g")
+            .attr("class", "axis")
+            .call("xAxis");
+        
         updateChart(bars, csvData.length, colorScale);
 
     }
@@ -211,7 +219,7 @@
             .enter()
             .append("option")
             .attr("value", function(d){ return d })
-            .text(function(d){ return d });
+            .text(function(d){ return "Population " + d.slice(0, -7).toUpperCase() + " Percentage in " + d.slice(-4) });
     }
     
     function changeAttribute(attribute, csvData){
